@@ -336,7 +336,7 @@ void spawnEnemy() {
 		case 2:
 			enemyPos = sf::Vector2f(viewSize.x, viewSize.y * 0.40f); speed = -600; break;
 		case 3:
-			enemyPos = sf::Vector2f(viewSize.x, viewSize.y * 0.20f); speed = -400; break;
+			enemyPos = sf::Vector2f(viewSize.x, viewSize.y * 0.30f); speed = -400; break;
 		default:
 			std::cout << "incorrect y value \n";
 			return;
