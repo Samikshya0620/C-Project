@@ -9,7 +9,6 @@
 #include "Rocket.h"
 
 
-
 //SFML has a Vector2f data type which is named viewSize to define 
 	//the size of the window
 sf::Vector2f viewSize(1024, 768);
@@ -19,7 +18,7 @@ sf::Vector2f viewSize(1024, 768);
 sf::VideoMode vm(viewSize.x, viewSize.y);
 //creating a window using Renderwindow class of SFML
 //Default style combines the ability to resize the window close it and add title bar
-sf::RenderWindow window(vm, "First game ", sf::Style::Default);
+sf::RenderWindow window(vm, "Our Bazzoka's World ", sf::Style::Default);
 
 
 void spawnEnemy();
@@ -31,9 +30,9 @@ bool checkCollision(sf::Sprite sprite1, sf::Sprite sprite2);
 void reset();
 
 //Variables
-sf::Texture skyTexture, bgTexture;
+sf::Texture skyTexture, bgTexture, bbgTexture;
 
-sf::Sprite skySprite, bgSprite;
+sf::Sprite skySprite, bgSprite, bbgSprite;
 
 Hero hero;
 
@@ -91,7 +90,7 @@ void init() {
 
 	sf::FloatRect headingbounds = headingText.getLocalBounds();
 	headingText.setOrigin(headingbounds.width / 2, headingbounds.height / 2);
-	headingText.setPosition(sf::Vector2f(viewSize.x * 0.5f, viewSize.y * 0.10f));
+	headingText.setPosition(sf::Vector2f(viewSize.x * 0.5f, viewSize.y * 0.20f));
 	
 	//Set Score Text
 
@@ -108,13 +107,13 @@ void init() {
 	//Tutorial Text
 
 	tutorialText.setFont(scoreFont);
-	tutorialText.setString("Press Space to Fire and Start Game ,Up Arrow to Jump");
+	tutorialText.setString("Press Space to Fire and Start Game \n" "            Press Up Arrow to Jump");
 	tutorialText.setCharacterSize(35);
 	tutorialText.setFillColor(sf::Color::Red);
 
 	sf::FloatRect tutorialbounds = tutorialText.getLocalBounds();
 	tutorialText.setOrigin(tutorialbounds.width / 2, tutorialbounds.height / 2);
-	tutorialText.setPosition(sf::Vector2f(viewSize.x * 0.5f, viewSize.y * 0.20f));
+	tutorialText.setPosition(sf::Vector2f(viewSize.x * 0.5f, viewSize.y * 0.60f));
 	
 	//Audio
 
@@ -257,9 +256,13 @@ void draw() {
 
 	}
 	if (gameover) {
-
+		bbgTexture.loadFromFile("Assets/graphics/bbb.jpg");
+		//set and attach a texture to sprite
+		bbgSprite.setTexture(bbgTexture);
+		window.draw(bbgSprite);
 		window.draw(headingText);
 		window.draw(tutorialText);
+		//window.draw(scoreText);
 	}
 	else {
 		window.draw(scoreText);
